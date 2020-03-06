@@ -1,6 +1,17 @@
 import React, { Component } from "react";
 
 class Counter extends Component {
+  componentDidUpdate(prevProps, prevState) {
+    console.log("prevProps", prevProps);
+    console.log("prevState", prevState);
+
+    // if (prevProps.Counter.value !== this.props.counter.value) {
+    //   // Ajax Call och få data från servern
+    // }
+  }
+  componentWillUnmount() {
+    console.log("Counter - Unmount");
+  }
   // state = {
   //   value: this.props.counter.value
   //   Tar bor deta innan  Reset kan använda  knapen
@@ -14,6 +25,7 @@ class Counter extends Component {
   // };
 
   render() {
+    console.log("Counter - Rendered");
     return (
       <div>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
@@ -21,7 +33,7 @@ class Counter extends Component {
         <button
           // onClick={this.handleIncrement}
           // ändra detta med passa a button till nedan samband med Reset
-          onClick={() => this.props.onIncrement(this.props.counter.id)}
+          onClick={() => this.props.onIncrement(this.props.counter)}
           className=" btn btn-secondary btn-sm"
         >
           Increment
@@ -40,7 +52,7 @@ class Counter extends Component {
     let classes = "badge m-2 badge-";
     // ändra state till props
     // classes += this.state.value === 0 ? "warning" : "primary";
-    // console.log(this.props.counter.value === 0 ? "warning" : "primary");
+    console.log(this.props.counter.value === 0 ? "warning" : "primary");
     classes += this.props.counter.value === 0 ? "warning" : "primary";
     return classes;
   };
